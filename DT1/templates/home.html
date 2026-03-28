@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="text-warning fw-bold text-uppercase" style="letter-spacing: 2px;">Welcome to DT Security</h2>
+        <hr class="mx-auto bg-danger" style="width: 80px; height: 3px; opacity: 1;">
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm bg-dark text-white overflow-hidden">
+                <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
+                    <img src="{% static 'img/car.png' %}" class="w-100" style="height: 200px; object-fit: cover;" />
+                    <a href="{% url 'services' %}">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title text-warning">Our Services</h4>
+                    <p class="card-text small text-light opacity-75">
+                        Discover our comprehensive security solutions ranging from physical guarding to advanced electronic surveillance.
+                    </p>
+                    <a href="{% url 'services' %}" class="btn btn-outline-warning btn-sm">Explore More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm bg-dark text-white overflow-hidden">
+                <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
+                    <img src="{% static 'img/dogs.jpg' %}" class="w-100" style="height: 200px; object-fit: cover;" />
+                    <a href="{% url 'about' %}">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title text-warning">About Us</h4>
+                    <p class="card-text small text-light opacity-75">
+                        Built on a strong foundation of experience and a network of highly trained, licensed professionals dedicated to excellence.
+                    </p>
+                    <a href="{% url 'about' %}" class="btn btn-outline-warning btn-sm">Read Story</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+            <div class="p-4 rounded shadow-sm h-100" style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid #444;">
+                <h4 class="text-danger fw-bold mb-4"><i class="fas fa-bullhorn me-2"></i>Latest Updates</h4>
+                
+                <div class="update-list" style="max-height: 400px; overflow-y: auto; padding-right: 5px;">
+                    {% for updatee in update %}
+                    <div class="mb-3 p-3 rounded" style="background: linear-gradient(90deg, #db190b 0%, #5e0b05 100%); border-left: 5px solid #ffc107;">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="badge bg-warning text-dark">{{ updatee.date_registered|date:"d M, Y" }}</span>
+                        </div>
+                        <h6 class="fw-bold text-white mb-1">{{ updatee.title }}</h6>
+                        <p class="small text-white opacity-75 mb-2">{{ updatee.heading|truncatechars:60 }}</p>
+                        
+                        {% if updatee.file %}
+                        <a href="{{ updatee.file.url }}" class="text-warning small text-decoration-none fw-bold">
+                            <i class="fas fa-download me-1"></i> Download Attachment
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center py-4">No recent updates.</p>
+                    {% endfor %}
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="{% url 'updates' %}" class="btn btn-danger w-100 shadow-0">View All Announcements</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom Scrollbar kwa ajili ya Updates */
+    .update-list::-webkit-scrollbar {
+        width: 4px;
+    }
+    .update-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .update-list::-webkit-scrollbar-thumb {
+        background: #db190b;
+        border-radius: 10px;
+    }
+    
+    .card {
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+    }
+</style>
+{% endblock %}

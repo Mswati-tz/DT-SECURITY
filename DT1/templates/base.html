@@ -1,0 +1,153 @@
+{%load static %}
+
+<!--link rel="icon" type="image/png" href="{% static 'img/DT3.gif' %}"-->
+
+<link rel="icon" type="image/x-icon" href="{% static 'img/favicon_io.zip' %}">
+    
+<title>DT SECURITY | Safety All Around</title>
+
+<link rel="stylesheet" href="{%static 'css/mdb.min.css'%}">
+<script src="{%static 'js/mdb.min.js'%}"></script>
+
+
+<header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg" style="background: linear-gradient(90deg, #db190b 0%, #5e0b05 100%);">
+    <div class="container-fluid">
+      <button
+        data-mdb-collapse-init
+        class="navbar-toggler"
+        type="button"
+        data-mdb-target="#navbarExample01"
+        aria-controls="navbarExample01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarExample01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'about' %}">About_Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'services' %}">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'client' %}">Our_Client</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'contact' %}">Call_Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Navbar -->
+
+  <!-- Background image -->
+  <div
+    class="p-5 text-center bg-image"
+    style="
+      background-image: url('{%static 'img/DT3.gif'%}');
+      height: 400px;
+      background-size: cover;
+      background-position-y: 50%;
+      box-shadow: 0 0 30px 10px rgba(219, 25, 11, 0.7);
+     
+    "
+  >
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white">
+          <h1 class="mb-3">DT SECUTIRY</h1>
+          <h4 class="mb-3">Safety All Around</h4>
+          <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="#!" role="button"
+          >Aplication</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Background image -->
+</header>
+
+<nav class="navbar navbar-expand-lg" style="background: linear-gradient(90deg, #db190b 0%, #5e0b05 100%);"></nav>
+
+{% block content %}
+
+
+{% endblock %}
+
+<footer class="text-center text-lg-start bg-dark text-white mt-5">
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom border-secondary">
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <div>
+      <a href="#" class="me-4 text-reset">
+        <i class="fab fa-facebook-f text-warning"></i>
+      </a>
+      <a href="#" class="me-4 text-reset">
+        <i class="fab fa-twitter text-warning"></i>
+      </a>
+      <a href="#" class="me-4 text-reset">
+        <i class="fab fa-instagram text-warning"></i>
+      </a>
+      <a href="#" class="me-4 text-reset">
+        <i class="fab fa-linkedin text-warning"></i>
+      </a>
+    </div>
+    </section>
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <div class="row mt-3">
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4 text-warning">
+            <i class="fas fa-shield-alt me-3"></i>DT SECURITY
+          </h6>
+          <p style="text-align: justify; font-size: 0.9rem;" class="text-light">
+            We are the leading private providers of comprehensive security services in Tanzania. 
+            Delivering elite protection solutions for residential, commercial, and industrial sectors 24/7.
+          </p>
+        </div>
+
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4 text-warning">Our Services</h6>
+          <p><a href="#!" class="text-reset">Physical Guarding</a></p>
+          <p><a href="#!" class="text-reset">CCTV Surveillance</a></p>
+          <p><a href="#!" class="text-reset">Mobile Patrols</a></p>
+          <p><a href="#!" class="text-reset">Alarm Response</a></p>
+        </div>
+
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4 text-warning">Useful links</h6>
+          <p><a href="{% url 'about' %}" class="text-reset">About Us</a></p>
+          <p><a href="{% url 'services' %}" class="text-reset">Services</a></p>
+          <p><a href="{% url 'contact' %}" class="text-reset">Contact</a></p>
+          <p><a href="#!" class="text-reset">Careers</a></p>
+        </div>
+
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <h6 class="text-uppercase fw-bold mb-4 text-warning">Contact</h6>
+          <p><i class="fas fa-home me-3 text-danger"></i> Dar es Salaam, Tanzania</p>
+          <p>
+            <i class="fas fa-envelope me-3 text-danger"></i>
+            dts3curitygroup@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3 text-danger"></i> +255 (0) 757 018 888</p>
+          <p><i class="fas fa-clock me-3 text-danger"></i> 24/7 Service Available</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="text-center p-4 border-top border-secondary" style="background-color: rgba(0, 0, 0, 0.2);">
+    © {% now "Y" %} Copyright:
+    <a class="text-reset fw-bold" href="#">DT SECURITY GROUP</a>
+  </div>
+  </footer>

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Section Headers */
+    .section-title {
+        letter-spacing: 2px;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: #db190b;
+    }
+
+    /* Industry Icons Styling */
+    .industry-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s ease;
+        border-radius: 15px;
+    }
+    .industry-card:hover {
+        background: rgba(219, 25, 11, 0.1);
+        border-color: #db190b;
+        transform: translateY(-5px);
+    }
+    .industry-icon {
+        font-size: 2.5rem;
+        color: #ffc107; /* Yellow/Gold */
+        margin-bottom: 15px;
+    }
+
+    /* Testimonial Quote */
+    .testimonial-card {
+        border-left: 5px solid #ffc107;
+        background: #2c2c2c;
+        font-style: italic;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="text-warning fw-bold section-title text-uppercase">Trusted by Leading Organizations</h1>
+        <p class="text-light opacity-75 mt-3 mx-auto" style="max-width: 700px;">
+            At <strong>DT SECURITY</strong>, we don't just provide guards; we build lasting partnerships. 
+            From Arusha to Mbeya and across Tanzania, we protect the assets that matter most to you.
+        </p>
+    </div>
+
+    <div class="row g-4 text-center mt-4">
+        <h3 class="text-white mb-4 fw-bold">Sector Expertise</h3>
+        
+        <div class="col-md-3 col-6">
+            <div class="p-4 industry-card h-100">
+                <i class="fas fa-shopping-cart industry-icon"></i>
+                <h6 class="text-white fw-bold">Retail & Malls</h6>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="p-4 industry-card h-100">
+                <i class="fas fa-industry industry-icon"></i>
+                <h6 class="text-white fw-bold">Industrial Plants</h6>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="p-4 industry-card h-100">
+                <i class="fas fa-hospital industry-icon"></i>
+                <h6 class="text-white fw-bold">Medical Facilities</h6>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="p-4 industry-card h-100">
+                <i class="fas fa-graduation-cap industry-icon"></i>
+                <h6 class="text-white fw-bold">Education Centers</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 py-5 text-center bg-dark rounded-4 shadow-sm border border-secondary">
+        <h4 class="text-warning mb-4">Our Esteemed Partners</h4>
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-5 opacity-50" style="filter: grayscale(100%);">
+            <i class="fab fa-amazon fa-3x text-white"></i>
+            <i class="fab fa-apple fa-3x text-white"></i>
+            <i class="fab fa-dhl fa-3x text-white"></i>
+            <i class="fab fa-fedex fa-3x text-white"></i>
+            <i class="fab fa-google fa-3x text-white"></i>
+        </div>
+        <p class="text-muted mt-4 small">Join 100+ businesses secured by DT Security</p>
+    </div>
+
+    <div class="row mt-5 pt-4">
+        <div class="col-lg-6 mb-4">
+            <div class="p-4 testimonial-card shadow-sm h-100">
+                <p class="text-light">"DT Security has transformed our logistics safety. Their response time in Dar es Salaam is unmatched and their guards are exceptionally professional."</p>
+                <footer class="blockquote-footer mt-2 text-warning">Logistics Manager, <cite title="Source Title">Coastal Hub</cite></footer>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="p-4 testimonial-card shadow-sm h-100">
+                <p class="text-light">"Managing a retail complex in Arusha requires high alertness. DT Security delivers peace of mind 24/7 with state-of-the-art surveillance."</p>
+                <footer class="blockquote-footer mt-2 text-warning">Operations Director, <cite title="Source Title">Sky Mall</cite></footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <h4 class="text-white mb-3">Ready to secure your business?</h4>
+        <a href="{% url 'contact' %}" class="btn btn-danger btn-lg px-5 fw-bold shadow-lg ripple">
+            Become Our Client <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .about-header {
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("{% static 'img/crop.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 60px 0;
+        margin-bottom: 40px;
+        border-radius: 10px;
+    }
+    .lead-text {
+        line-height: 1.8;
+        text-align: justify;
+        color: #444;
+    }
+    .vision-card {
+        border-left: 5px solid #ffc107; /* Rangi ya Warning/Yellow */
+        background-color: #f8f9fa;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="about-header text-center shadow-sm">
+        <h1 class="display-4 fw-bold text-warning">About DT SECURITY</h1>
+        <p class="lead">Your Elite Protection Partner in Tanzania</p>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-lg-5 mb-4">
+            <div class="bg-image hover-overlay ripple shadow-4-strong rounded-4" data-mdb-ripple-color="light">
+                <img src="{% static 'img/dogs.jpg' %}" class="w-100" alt="DT Security Background" />
+                <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-7 mb-4">
+            <h3 class="text-danger fw-bold mb-3">Who We Are</h3>
+            <p class="lead-text">
+                Since our inception, <strong>DT SECURITY</strong> has grown to become one of the country's leading private providers of comprehensive security services. Headquartered in <strong>Arusha</strong>, we deliver elite protection solutions nationwide to clients across diverse industries.
+            </p>
+            <p class="lead-text">
+                From office complexes and shopping malls to industrial plants and medical facilities, our team is available 24/7 to provide the reliable, professional security presence necessary to meet the demands of any market.
+            </p>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="p-4 vision-card shadow-sm h-100">
+                <h4 class="text-warning fw-bold"><i class="bi bi-eye-fill me-2"></i>Our Vision</h4>
+                <p class="text-muted">
+                    Our vision is driven by the integration of state-of-the-art technology, ensuring that our operations remain transparent, efficient, and highly trustworthy. We are committed to "Customer Delight" in every service we provide.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-4 border rounded shadow-sm h-100 bg-white">
+                <h4 class="text-danger fw-bold"><i class="bi bi-shield-check me-2"></i>Professional Excellence</h4>
+                <p class="text-muted">
+                    Our success is built upon experience. We take pride in our proven network of licensed, insured, and highly trained professionals dedicated to excellence across Arusha, Mbeya, and beyond.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

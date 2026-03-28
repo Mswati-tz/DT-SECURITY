@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* 1. MISINGI YA MWONEKANO */
+    #services-container {
+        min-height: 500px; /* Inazuia ukurasa kushtuka wakati wa kupakia */
+        position: relative;
+    }
+
+    /* 2. ANIMATION ZA KUTELEZA (SLIDING EFFECTS) */
+    .service-card {
+        transition: all 0.5s ease-in-out;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Hii inatumika wakati data inatoka */
+    .fade-out {
+        opacity: 0 !important;
+        transform: translateY(-20px) !important;
+    }
+
+    /* Hii inatumika data mpya inapoingia */
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* 3. PAGINATION STYLING */
+    .page-link {
+        color: #dc3545;
+        border: 1px solid #dee2e6;
+        padding: 8px 16px;
+        transition: 0.3s;
+    }
+
+    .page-item.active .page-link {
+        background-color: #dc3545 !important;
+        border-color: #dc3545 !important;
+        color: white !important;
+    }
+
+    .page-link:hover {
+        background-color: #f8f9fa;
+        color: #a71d2a;
+    }
+
+    /* 4. LOADING SPINNER */
+    #loading-overlay {
+        display: none;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+    }
+</style>
+
+<h1 class="text-warning text-center mt-4 mb-5">Our Professional Services</h1>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-8" id="services-container">
+            
+            <div id="loading-overlay">
+                <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <div class="row g-4" id="services-list">
+                {% for service in page_obj %}
+                <div class="col-12 service-card fade-in-up">
+                    <div class="p-4 bg-white border rounded shadow-sm d-flex align-items-center h-100">
+                        {% if service.image %}
+                            <img src="{{ service.image.url }}" class="rounded me-4 shadow-sm" 
+                                 style="width: 120px; height: 120px; object-fit: cover;" alt="{{ service.title }}">
+                        {% else %}
+                            <img src="{% static 'img/default.png' %}" class="rounded me-4" 
+                                 style="width: 120px; height: 120px; object-fit: cover;">
+                        {% endif %}
+                        
+                        <div>
+                            <h5 class="text-danger fw-bold mb-2">{{ service.title|upper }}</h5>
+                            <p class="text-muted mb-0" style="font-size: 0.95rem; line-height: 1.6;">
+                                {{ service.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <i class="bi bi-info-circle text-muted fs-1"></i>
+                    <p class="text-muted mt-2">Bado hakuna huduma zilizowekwa kwenye mfumo.</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if page_obj.has_other_pages %}
+            <nav aria-label="Page navigation" class="mt-5" id="pagination-wrapper">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link ajax-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    {% for i in page_obj.paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link ajax-link" href="?page={{ i }}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link ajax-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <div class="sticky-top" style="top: 100px; z-index: 10;">
+                <div class="card border-0 shadow-sm bg-light overflow-hidden">
+                    <img src="{% static 'img/customer.png' %}" class="card-img-top" alt="Customer Care">
+                    <div class="card-body p-4">
+                        <h4 class="text-warning fw-bold">Always by your side</h4>
+                        <hr class="text-danger">
+                        <p class="text-dark small lh-lg" style="text-align: justify;">
+                            <strong>DT Security</strong> we take pride in delivering top-notch security services in Arusha and Mbeya. 
+                            Our team of professionals ensures your safety and protection 24/7.
+                        </p>
+                        <div class="mt-4">
+                            <a href="{% url 'contact' %}" class="btn btn-danger w-100 fw-bold py-2">
+                                <i class="bi bi-envelope-fill me-2"></i>Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on('click', '.ajax-link', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+
+        // 1. Anza kufifisha list iliyopo (Fade Out)
+        $('#services-list, #pagination-wrapper').addClass('fade-out');
+        $('#loading-overlay').fadeIn(200);
+
+        // 2. Subiri kidogo animation ya kufifia iishe (milisekunde 400)
+        setTimeout(function() {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data) {
+                    // Pata kodi ya HTML pekee ya lile container
+                    var newHTML = $(data).find('#services-container').html();
+                    
+                    // Weka data mpya kwenye container
+                    $('#services-container').html(newHTML);
+                    
+                    // 3. Hakikisha list mpya inakuja na animation (Fade In Up)
+                    $('#services-list').addClass('fade-in-up');
+                    
+                    // 4. Scroll mpaka juu ya huduma kwa ulaini (Smooth Scroll)
+                    $('html, body').animate({
+                        scrollTop: $("#services-container").offset().top - 120
+                    }, 400);
+                },
+                error: function() {
+                    alert('Try again letter');
+                    $('#loading-overlay').hide();
+                }
+            });
+        }, 400);
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="text-warning fw-bold text-uppercase" style="letter-spacing: 3px;">Official Announcements</h1>
+        <p class="text-light opacity-75">Stay updated with the latest news and security briefs from DT Security</p>
+        <hr class="mx-auto bg-warning" style="width: 100px; height: 3px; opacity: 1;">
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            
+            {% for updatee in update %}
+            <div class="card mb-4 border-0 shadow-lg overflow-hidden ripple" 
+                 style="background: #2c2c2c; border-left: 6px solid #db190b !important;">
+                
+                <div class="card-body p-4">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="rounded-circle bg-danger d-flex align-items-center justify-content-center me-3" 
+                                 style="width: 50px; height: 50px;">
+                                <i class="fas fa-bell text-white fs-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="card-title text-warning mb-0 fw-bold">{{ updatee.title|upper }}</h4>
+                                <small class="text-info"><i class="far fa-calendar-alt me-1"></i> Posted on: {{ updatee.date_registered|date:"D, d M Y" }}</small>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-2 mt-md-0">
+                            <span class="badge rounded-pill bg-danger px-3 py-2 shadow-sm">
+                                <i class="fas fa-clock me-1"></i> New Update
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="ps-md-5 ms-md-2">
+                        <h5 class="text-white mb-3 fw-light" style="line-height: 1.6;">
+                            {{ updatee.heading }}
+                        </h5>
+                        
+                        <div class="d-flex flex-wrap gap-3 mt-4">
+                            {% if updatee.file %}
+                            <a href="{{ updatee.file.url }}" class="btn btn-warning btn-sm fw-bold px-4 py-2 shadow-0">
+                                <i class="fas fa-file-download me-2"></i> DOWNLOAD ATTACHMENT
+                            </a>
+                            {% endif %}
+                            
+                            <button class="btn btn-outline-light btn-sm px-4 py-2 shadow-0" disabled>
+                                <i class="fas fa-check-circle me-2"></i> Verified Official
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center py-5">
+                <i class="fas fa-folder-open text-muted display-1 mb-3"></i>
+                <h3 class="text-muted">No updates found at the moment.</h3>
+                <p class="text-light opacity-50">Please check back later for more information.</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Animation wakati kadi inatokea */
+    .card {
+        animation: slideIn 0.5s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Kadi ikiguswa (Hover) */
+    .card:hover {
+        background: #353535 !important;
+        transition: 0.3s ease;
+    }
+</style>
+{% endblock %}

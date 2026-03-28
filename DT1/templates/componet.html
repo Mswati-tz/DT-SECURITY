@@ -1,0 +1,53 @@
+
+        Log zako zinaonyesha wazi tatizo lilipo. Kosa kubwa ni hili:
+
+        InnoDB: Assertion failure in file ... os0file.cc line 6132.
+        
+        Hii inamaanisha kuwa database yako ya MariaDB imepata "Corruption" (imeharibika) kwenye mafaili ya mfumo wa InnoDB. Hii hutokea mara nyingi kama kompyuta ilizima ghafla au XAMPP ilifungwa isivyo sahihi wakati database ikiandika data.
+        
+        Kwa sababu njia ya kawaida imekataa, hapa kuna mpango wa uokoaji (Rescue Plan) ili urudishe MySQL yako kazini:
+        
+        Hatua ya 1: Tengeneza "Backup" ya Data Zako (MUHIMU)
+        Kabla ya kufanya lolote, nenda kwenye folder la C:\xampp\mysql\ na upige copy folder lote la data kisha liweke sehemu salama (mfano kwenye Desktop). Hii ni ili usipoteze database zako za DT SECURITY na collegemis.
+        
+        Hatua ya 2: Njia ya Uhakika ya Kurekebisha (Resetting MySQL)
+        Tunaenda kutumia folder la backup ambalo XAMPP inalo kwa ajili ya dharura kama hizi:
+        
+        Hakikisha MySQL na Apache zimezimwa kwenye XAMPP Control Panel.
+        
+        Nenda kwenye folder: C:\xampp\mysql\.
+        
+        Badilisha jina la folder la data kuwa data_old.
+        
+        Tengeneza folder jipya tupu na lipe jina data.
+        
+        Nenda kwenye folder la backup (C:\xampp\mysql\backup).
+        
+        Copy mafaili yote yaliyomo ndani ya folder la backup na uya-paste ndani ya lile folder jipya la data ulilotengeneza.
+        
+        Sasa, rudi kwenye folder lako la data_old:
+        
+        Copy folders zote za database zako (mfano folder la security_db, collegemis, n.k.). USI-COPY folders za mysql, performance_schema, au phpmyadmin.
+        
+        Paste folders hizo ndani ya lile folder jipya la data.
+        
+        Tafuta faili linaitwa ibdata1 kutoka kwenye data_old na uli-copy na kuli-paste ndani ya data (li-replace lile lililopo).
+        
+        Jaribu ku-start MySQL sasa hivi.
+        
+        Hatua ya 3: Ikiendelea kukataa (Force Recovery Mode)
+        Kama bado inakataa, inabidi tuilazimishe MariaDB iwake bila kujali makosa.
+        
+        Kwenye XAMPP Control Panel, bofya Config (kwenye mstari wa MySQL) na chagua my.ini.
+        
+        Tafuta sehemu iliyoandikwa [mysqld].
+        
+        Chini kidogo ya [mysqld], ongeza mstari huu:
+        
+        Ini, TOML
+        innodb_force_recovery = 1
+        Save na jaribu kuwasha. Ikikataa, badilisha namba iwe 2, mpaka 4.
+        
+        Tahadhari: Ukifanikiwa kuwasha kwa njia hii, haraka sana nenda phpMyAdmin, fanya Export ya database zako, kisha futa MySQL na uirudishe upya (reinstall) ili iwe safi.
+        
+        Augustino, jaribu kwanza hiyo Hatua ya 2 (kutumia folder la backup) kwani hiyo ndiyo njia iliyozoeleka kurekebisha Assertion failure kwenye XAMPP. Je, umefanikiwa kuona folder la backup kwenye folder lako la MySQL?
