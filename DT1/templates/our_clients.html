@@ -8,7 +8,7 @@
         letter-spacing: 2px;
         position: relative;
         padding-bottom: 15px;
-        color: #ffc107 !important; /* Inahakikisha rangi ya njano inabaki */
+        color: #ffc107 !important; 
     }
     .section-title::after {
         content: "";
@@ -28,25 +28,26 @@
         transition: 0.3s ease;
         border-radius: 15px;
         width: 250px; 
-        min-height: 200px;
+        min-height: 220px; /* Nimeongeza urefu kidogo ili location isizidiwe */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    /* HII NDIO DAWA YA RANGI: Inalazimisha kila kitu ndani kiwe nyeupe */
-    .industry-card h5, 
-    .industry-card p, 
-    .industry-card i.fa-map-marker-alt {
-        color: #ffffff !important;
-        opacity: 1 !important; /* Inaondoa ule weusi-weusi (transparency) */
-    }
-
     .industry-card:hover {
         background: rgba(219, 25, 11, 0.2);
         border-color: #db190b;
         transform: translateY(-5px);
+    }
+
+    /* Dawa ya rangi nyeupe kwa icon na text */
+    .location-wrapper {
+        color: #ffffff !important;
+    }
+    .location-icon {
+        color: #ffffff !important;
+        margin-right: 5px;
     }
 </style>
 
@@ -71,11 +72,12 @@
                         <i class="fas fa-shield-alt text-warning mb-3" style="font-size: 2.8rem;"></i>
                     {% endif %}
                     
-                    <h5 class="fw-bold mb-2">{{ client.site_name }}</h5>
+                    <h5 class="text-white fw-bold mb-2">{{ client.site_name }}</h5>
                     
-                    <p class="small mb-0">
-                        <i class="fas fa-map-marker-alt me-1"></i> <h6 class="text-white">{{ client.location }}</h6>
-                    </p>
+                    <div class="location-wrapper d-flex align-items-center justify-content-center">
+                        <i class="fas fa-map-marker-alt location-icon"></i>
+                        <span class="text-white small fw-bold">{{ client.location }}</span>
+                    </div>
                 </div>
             {% empty %}
                 <p class="text-white opacity-50 italic">Bado hakuna wateja waliosajiliwa kwenye mfumo wetu.</p>
