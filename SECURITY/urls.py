@@ -20,6 +20,10 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('DT1.urls')),
+
+    # --- ONGEZA HIZI NJIA ZA API HAPA CHINI ---
+    path('api/askari/', views.AskariListCreateAPI.as_view(), name='askari-api'),
+    path('api/reports/', views.ReportListCreateAPI.as_view(), name='reports-api'),
 ]
 
 
