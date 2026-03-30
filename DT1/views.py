@@ -38,11 +38,20 @@ def services(request):
 
 
 
-def client(request):
-    # Tunachukua wateja wote kutoka database
-    all_clients = models.ClientSite.objects.all() 
-    return render(request, 'our_clients.html', {'clients': all_clients})
+
+ def client(request):
+    # Tunachukua wateja wote kutoka Admin/Database
+    all_clients = Client.objects.all() 
+    
+    # MUHIMU: Jina hapa kushoto ('clients') lazima lifanane na lile la kwenye HTML loop
+    context = {
+        'clients': all_clients,
+    }
+    return render(request, 'client.html', context)
     #return render(request,'our_clients.html')
+
+
+
 
 def update(request):
     updates=models.Update.objects.all().order_by('-id')[:5]
