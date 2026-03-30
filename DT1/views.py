@@ -39,17 +39,12 @@ def services(request):
 
 
 
- def client(request):
-    # Tunachukua wateja wote kutoka Admin/Database
-    all_clients = Client.objects.all() 
+def client(request):
+    # Tunaita data kutoka kwenye Model yako ya wateja (hakikisha jina la Model ni sahihi)
+    from .models import Client 
+    wateja = Client.objects.all() 
     
-    # MUHIMU: Jina hapa kushoto ('clients') lazima lifanane na lile la kwenye HTML loop
-    context = {
-        'clients': all_clients,
-    }
-    return render(request, 'client.html', context)
-    #return render(request,'our_clients.html')
-
+    return render(request, 'Our_client.html', {'clients': wateja})
 
 
 
