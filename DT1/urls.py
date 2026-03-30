@@ -12,7 +12,7 @@ urlpatterns = [
     path('Apply/', views.apply, name="apply"), # Imepewa path yake ya kipekee
 
     # API Endpoints
-    path('api/messages/', views.ContactMessageListAPI.as_view(), name='messages-api'),
+    # API zako ziwe hapa
     path('api/askari/', views.AskariListCreateAPI.as_view(), name='askari-api'),
     path('api/reports/', views.ReportListCreateAPI.as_view(), name='reports-api'),
 ]
