@@ -12,4 +12,8 @@ urlpatterns=[
     
     path('contact/', views.contact, name='contact'), # Hakikisha name='contact' ipo hapa
 
+
+    path('contact/', views.contact, name='contact'), # Hii ni ile page ya HTML
+    path('api/messages/', views.ContactMessageListAPI.as_view()), # Hii ni API ya kuona meseji hizo hizo
+
 ]
