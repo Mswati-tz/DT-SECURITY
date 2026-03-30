@@ -16,4 +16,8 @@ urlpatterns=[
     path('contact/', views.contact, name='contact'), # Hii ni ile page ya HTML
     path('api/messages/', views.ContactMessageListAPI.as_view()), # Hii ni API ya kuona meseji hizo hizo
 
+    # --- HIZI NDIO NJIA MPYA ZA API ---
+    path('api/askari/', views.AskariListCreateAPI.as_view(), name='askari-api'),
+    path('api/reports/', views.ReportListCreateAPI.as_view(), name='reports-api'),
+
 ]
