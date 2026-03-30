@@ -8,11 +8,6 @@ from django.contrib import messages
 from .models import ContactMessage
 
 
-from rest_framework import generics
-from .serializers import AskariSerializer, ReportSerializer, ContactMessageSerializer
-# (Hapa nimeongeza pia serializer ya ContactMessage ili uweze kuona meseji zako kupitia API)
-
-
 
 # Create your views here.
 
