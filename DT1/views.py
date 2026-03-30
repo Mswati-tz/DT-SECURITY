@@ -89,16 +89,4 @@ def contact(request):
 
 
 
-# --- HIZI NI KWA AJILI YA API (REST FRAMEWORK) ---
 
-class AskariListCreateAPI(generics.ListCreateAPIView):
-    queryset = models.Askari.objects.all()
-    serializer_class = AskariSerializer
-
-class ReportListCreateAPI(generics.ListCreateAPIView):
-    queryset = models.Report.objects.all()
-    serializer_class = ReportSerializer
-
-class ContactMessageListAPI(generics.ListCreateAPIView):
-    queryset = models.ContactMessage.objects.all()
-    serializer_class = ContactMessageSerializer
