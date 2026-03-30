@@ -11,8 +11,5 @@ urlpatterns = [
     path('Updates/', views.update, name="updates"),
     path('Apply/', views.apply, name="apply"), # Imepewa path yake ya kipekee
 
-    # API Endpoints
-    # API zako ziwe hapa
-    path('api/askari/', views.AskariListCreateAPI.as_view(), name='askari-api'),
-    path('api/reports/', views.ReportListCreateAPI.as_view(), name='reports-api'),
+    
 ]
